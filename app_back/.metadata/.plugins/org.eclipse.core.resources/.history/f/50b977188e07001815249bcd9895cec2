@@ -1,0 +1,64 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.domain.Aluno;
+import com.example.demo.exceptions.UnmatchingUserCredentialsException;
+import com.example.demo.exceptions.UserNotFoundException;
+import com.example.demo.repositories.UserDAO;
+
+@Service
+@Transactional(propagation=Propagation.REQUIRED)
+public class UserServiceImpl implements UserService {
+
+	private UserDAO userDAO;
+	
+	@Autowired
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+	
+	@Override
+	public List<Aluno> listAll(){
+		return userDAO.listAll();
+	}
+	
+	@Override
+	public Aluno save(Aluno user) {
+		return userDAO.save(user);
+	}
+	
+	@Override
+	public void update(Aluno user) {
+		userDAO.update(user);
+	}
+
+	@Override
+	public Aluno doesUserExist(String email) throws UserNotFoundException {
+		List<Aluno> users = (List<Aluno>) userDAO.findByEmail(email);
+		if(users.size() == 0) {
+			throw new UserNotFoundException("User does not exist in the database.");
+		} 
+		return users.get(0);
+	}
+
+	@Override
+	public Aluno isValidUser(String email, String password) throws UnmatchingUserCredentialsException {
+		List<Aluno> users = (List<Aluno>) userDAO.findByEmailAndPassword(email, password);
+		if(users == null || users.size() == 0) {
+			throw new UnmatchingUserCredentialsException("User with given credentials is not found in the database.");
+		} 
+		return users.get(0);
+	}
+
+	@Override
+	public Aluno getByEmail(String email) throws UserNotFoundException {
+		return this.doesUserExist(email);
+	}
+
+}

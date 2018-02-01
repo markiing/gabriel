@@ -1,0 +1,9 @@
+package com.example.demo.helpers;
+
+import java.util.ArrayList;
+
+import com.example.demo.domain.Doctor;
+
+public class DoctorList extends ArrayList<Doctor> {
+
+}

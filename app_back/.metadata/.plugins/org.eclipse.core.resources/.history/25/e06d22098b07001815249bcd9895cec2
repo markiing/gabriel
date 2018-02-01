@@ -1,0 +1,5 @@
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (26,'gabriel@gmail.com','gabriel','João Gabriel', NULL, NULL, 1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;

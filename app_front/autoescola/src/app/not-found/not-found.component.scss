@@ -1,0 +1,30 @@
+@import '../../_theme.scss';
+body {
+    background-color: $mainBlue;
+    color: $secFontColor;
+}
+.container-fluid {
+    background-color: $mainBlue;
+    color: $secFontColor;
+    min-height: 87vh; 
+    .col {
+        h1 {
+            font-size: 10rem;
+        }
+        h2 {
+            font-size: 3rem;
+        }
+        text-align: center;
+        .btn {
+            border-radius: 0px !important;
+            line-height: $btnLineHeight !important;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+          
+        .btn-primary {
+            background-color: $secBlue !important;
+        }
+    }
+}
