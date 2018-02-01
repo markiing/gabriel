@@ -1,0 +1,19 @@
+package com.example.demo.repositories;
+
+import java.util.List;
+
+import com.example.demo.domain.Aluno;
+
+public interface UserDAO  {
+	
+	public List<Aluno> listAll();
+	
+	Aluno save(Aluno user);
+	
+	List<Aluno> findByEmail(String email);
+	
+	List<Aluno> findByEmailAndPassword(String email, String password);
+	
+	void update(Aluno user);
+	
+}

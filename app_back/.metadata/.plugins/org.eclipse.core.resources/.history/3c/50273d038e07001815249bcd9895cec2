@@ -1,0 +1,22 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+import com.example.demo.domain.Aluno;
+import com.example.demo.exceptions.UnmatchingUserCredentialsException;
+import com.example.demo.exceptions.UserNotFoundException;
+
+public interface UserService {
+	
+	List<Aluno> listAll();
+	
+	Aluno save(Aluno user);
+	
+	void update(Aluno user);
+	
+	Aluno doesUserExist(String email) throws UserNotFoundException;
+	
+	Aluno getByEmail(String email) throws UserNotFoundException;
+	
+	Aluno isValidUser(String email, String password) throws UnmatchingUserCredentialsException;
+}

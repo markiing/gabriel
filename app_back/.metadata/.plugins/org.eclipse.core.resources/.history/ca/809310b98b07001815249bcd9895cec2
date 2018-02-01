@@ -1,0 +1,19 @@
+package com.example.demo.repositories;
+
+import java.util.List;
+
+import com.example.demo.domain.User;
+
+public interface UserDAO  {
+	
+	public List<User> listAll();
+	
+	User save(User user);
+	
+	List<User> findByEmail(String email);
+	
+	List<User> findByEmailAndPassword(String email, String password);
+	
+	void update(User user);
+	
+}
